@@ -157,9 +157,13 @@ export function EventsSection() {
               <div key={videoNum} className="w-[calc(50%-6px)] md:w-[calc(25%-12px)] lg:w-[calc(25%-12px)]">
                 <div className="relative bg-background rounded-lg overflow-hidden">
                   <div className="relative w-full aspect-[9/16] bg-background">
-                    <video className="w-full h-full object-cover" controls controlsList="nodownload">
+                    <video
+                      className="w-full h-full object-cover"
+                      controls
+                      controlsList="nodownload"
+                      suppressHydrationWarning
+                    >
                       <source src={`/freshvid${videoNum}.mp4`} type="video/mp4" />
-                      Your browser does not support the video tag.
                     </video>
                   </div>
                 </div>
