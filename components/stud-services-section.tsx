@@ -80,9 +80,9 @@ export function StudServicesSection() {
                 <Image
                   src={
                     stud.featured
-                      ? "/images/studs/kingsimba2.png"
+                      ? "/kingsimba2.png"
                       : stud.comingSoon
-                        ? "/images/studs/coming_soon.jpg"
+                        ? "/coming_soon.jpg"
                         : `/placeholder.svg?height=400&width=400&query=handsome ${stud.color} french bulldog portrait professional photo`
                   }
                   alt={stud.name}

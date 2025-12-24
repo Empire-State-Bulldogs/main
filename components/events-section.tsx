@@ -152,14 +152,16 @@ export function EventsSection() {
           <h3 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-card-foreground text-center">
             Watch Our Latest Highlights
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {[1, 2, 3, 4, 5, 6, 7].map((videoNum) => (
-              <div key={videoNum} className="relative bg-background rounded-lg overflow-hidden">
-                <div className="relative w-full aspect-[9/16] bg-background">
-                  <video className="w-full h-full object-cover" controls controlsList="nodownload">
-                    <source src={`/vids/freshvid${videoNum}.mp4`} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+              <div key={videoNum} className="w-[calc(50%-6px)] md:w-[calc(25%-12px)] lg:w-[calc(25%-12px)]">
+                <div className="relative bg-background rounded-lg overflow-hidden">
+                  <div className="relative w-full aspect-[9/16] bg-background">
+                    <video className="w-full h-full object-cover" controls controlsList="nodownload">
+                      <source src={`/freshvid${videoNum}.mp4`} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
                 </div>
               </div>
             ))}
