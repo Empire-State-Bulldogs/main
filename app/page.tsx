@@ -5,7 +5,6 @@ import { StudServicesSection } from "@/components/stud-services-section"
 import { PuppiesSection } from "@/components/puppies-section"
 import { GallerySection } from "@/components/gallery-section"
 import { InstagramGallery } from "@/components/instagram-gallery"
-import { EventsSection } from "@/components/events-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 
@@ -19,7 +18,6 @@ export default function Home() {
       <PuppiesSection />
       <GallerySection />
       <InstagramGallery />
-      <EventsSection />
       <ContactSection />
       <Footer />
     </main>

@@ -22,12 +22,12 @@ const socialLinks = [
 ]
 
 const songs = [
-  { title: "Bulldog Flex Anthem", file: "Bulldog%20Flex%20Anthem.mp3" },
-  { title: "Bulldog Love", file: "Bulldog%20Love.mp3" },
-  { title: "Empire State Bulldogs", file: "Empire%20State%20Bulldogs.mp3" },
-  { title: "Empire State Reign", file: "Empire%20State%20Reign.mp3" },
-  { title: "King Simba's Reign", file: "King%20Simba%27s%20Reign.mp3" },
-  { title: "Puppy Dreams", file: "Puppy%20Dreams.mp3" },
+  { title: "Bulldog Flex Anthem", file: "song1.mp3" },
+  { title: "Bulldog Love", file: "song2.mp3" },
+  { title: "Empire State Bulldogs", file: "song3.mp3" },
+  { title: "Empire State Reign", file: "song4.mp3" },
+  { title: "King Simba's Reign", file: "song5.mp3" },
+  { title: "Puppy Dreams", file: "song6.mp3" },
 ]
 
 export function Header() {
@@ -45,20 +45,13 @@ export function Header() {
 
   const togglePlay = () => {
     if (audioRef.current) {
-      console.log("[v0] Audio state:", {
-        src: audioRef.current.src,
-        readyState: audioRef.current.readyState,
-        currentTime: audioRef.current.currentTime,
-        duration: audioRef.current.duration,
-      })
-
       if (isPlaying) {
         audioRef.current.pause()
       } else {
         const playPromise = audioRef.current.play()
         if (playPromise !== undefined) {
           playPromise.catch((error) => {
-            console.log("[v0] Audio play error:", error)
+            console.error("Audio play error:", error)
           })
         }
       }
@@ -71,14 +64,13 @@ export function Header() {
     setCurrentTrackIndex(newIndex)
     if (audioRef.current) {
       const newSrc = `/music/${songs[newIndex].file}`
-      console.log("[v0] Loading track:", songs[newIndex].title, "from", newSrc)
       audioRef.current.src = newSrc
       audioRef.current.load()
 
       const playPromise = audioRef.current.play()
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          console.log("[v0] Audio play error on next track:", error)
+          console.error("Audio play error on next track:", error)
         })
       }
       setIsPlaying(true)
@@ -90,14 +82,13 @@ export function Header() {
     setCurrentTrackIndex(newIndex)
     if (audioRef.current) {
       const newSrc = `/music/${songs[newIndex].file}`
-      console.log("[v0] Loading track:", songs[newIndex].title, "from", newSrc)
       audioRef.current.src = newSrc
       audioRef.current.load()
 
       const playPromise = audioRef.current.play()
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          console.log("[v0] Audio play error on prev track:", error)
+          console.error("Audio play error on prev track:", error)
         })
       }
       setIsPlaying(true)
@@ -110,9 +101,6 @@ export function Header() {
         ref={audioRef}
         src={`/music/${songs[currentTrackIndex].file}`}
         onEnded={nextTrack}
-        onError={(e) => {
-          console.log("[v0] Audio error:", e.currentTarget.error?.message)
-        }}
         crossOrigin="anonymous"
         preload="metadata"
       />

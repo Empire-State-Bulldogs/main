@@ -74,7 +74,13 @@ export function EventsSection() {
               animationDelay: `${bone.delay}s`,
             }}
           >
-            <Image src="/dogbone.png" alt="dogbone" width={60} height={60} className="w-full h-full object-contain" />
+            <Image
+              src="/images/dogbone.png"
+              alt="dogbone"
+              width={60}
+              height={60}
+              className="w-full h-full object-contain"
+            />
           </div>
         ))}
       </div>
@@ -165,7 +171,7 @@ export function EventsSection() {
                       onError={() => console.log("[v0] Video error: freshvid" + videoNum)}
                       onLoadedMetadata={() => console.log("[v0] Video loaded: freshvid" + videoNum)}
                     >
-                      <source src={`/freshvid${videoNum}.mp4`} type="video/mp4" />
+                      <source src={`/vids/freshvid${videoNum}.mp4`} type="video/mp4" />
                     </video>
                   </div>
                 </div>

@@ -80,14 +80,15 @@ export function StudServicesSection() {
                 <Image
                   src={
                     stud.featured
-                      ? "/kingsimba2.png"
+                      ? "/images/kingsimba2.png"
                       : stud.comingSoon
-                        ? "/coming_soon.jpg"
+                        ? "/images/coming_soon.jpg"
                         : `/placeholder.svg?height=400&width=400&query=handsome ${stud.color} french bulldog portrait professional photo`
                   }
                   alt={stud.name}
                   fill
                   className="object-contain p-4"
+                  priority={stud.featured}
                 />
                 {stud.featured && (
                   <div className="absolute top-4 left-4">
