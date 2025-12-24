@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Crown, MapPin, Star } from "lucide-react"
+import { Crown, MapPin, Star, Clock } from "lucide-react"
 
 const studs = [
   {
@@ -17,24 +17,14 @@ const studs = [
     featured: true,
   },
   {
-    name: "Duke",
-    title: "Rising Star",
+    name: "Coming Soon",
+    title: "Next Generation Stud",
     description:
-      "A magnificent male with incredible structure and a loving personality. Duke brings exceptional genetics and a calm temperament to every breeding.",
-    traits: ["AKC Registered", "DNA Tested", "Excellent Structure"],
-    color: "Brindle",
-    available: true,
-    featured: false,
-  },
-  {
-    name: "Atlas",
-    title: "Elite Performer",
-    description:
-      "Atlas combines stunning looks with a playful, affectionate nature. His puppies are known for their vibrant personalities and robust health.",
-    traits: ["Show Quality", "Health Certified", "Great Temperament"],
-    color: "Cream",
-    available: true,
-    featured: false,
+      "We're preparing our next champion stud to join our breeding program. Stay tuned for an exciting addition to our exceptional lineup.",
+    traits: ["TBA", "In Development", "Future Champion"],
+    color: "TBA",
+    available: false,
+    comingSoon: true,
   },
 ]
 
@@ -80,22 +70,24 @@ export function StudServicesSection() {
         </div>
 
         {/* Studs Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12 justify-items-center max-w-4xl mx-auto">
           {studs.map((stud) => (
             <Card
               key={stud.name}
-              className={`bg-card border-border overflow-hidden hover:border-primary/50 transition-all duration-300 ${stud.featured ? "ring-2 ring-primary" : ""}`}
+              className={`bg-card border-border overflow-hidden hover:border-primary/50 transition-all duration-300 ${stud.featured ? "ring-2 ring-primary" : ""} ${stud.comingSoon ? "opacity-75" : ""}`}
             >
               <div className="relative aspect-square bg-secondary">
                 <Image
                   src={
                     stud.featured
                       ? "/kingsimba2.png"
-                      : `/placeholder.svg?height=400&width=400&query=handsome ${stud.color} french bulldog portrait professional photo`
+                      : stud.comingSoon
+                        ? "/coming_soon.jpg"
+                        : `/placeholder.svg?height=400&width=400&query=handsome ${stud.color} french bulldog portrait professional photo`
                   }
                   alt={stud.name}
                   fill
-                  className="object-cover"
+                  className="object-contain p-4"
                 />
                 {stud.featured && (
                   <div className="absolute top-4 left-4">
@@ -105,7 +97,15 @@ export function StudServicesSection() {
                     </Badge>
                   </div>
                 )}
-                {stud.available && (
+                {stud.comingSoon && (
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-accent text-accent-foreground">
+                      <Clock className="w-3 h-3 mr-1" />
+                      Coming Soon
+                    </Badge>
+                  </div>
+                )}
+                {stud.available && !stud.comingSoon && (
                   <div className="absolute top-4 right-4">
                     <Badge variant="outline" className="bg-background/80 text-primary border-primary">
                       Available

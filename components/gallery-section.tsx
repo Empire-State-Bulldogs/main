@@ -2,29 +2,18 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
 import { BackgroundElements } from "@/components/background-elements"
 
-const categories = ["All", "Studs", "Puppies", "Events", "Lifestyle"]
-
 const galleryImages = [
-  { src: "/fresh1.jpg", category: "Studs", alt: "French Bulldog Stud" },
-  { src: "/fresh2.jpg", category: "Puppies", alt: "Playful Frenchie Puppy" },
-  { src: "/fresh3.jpg", category: "Events", alt: "Dog Show Event" },
-  { src: "/fresh4.jpg", category: "Lifestyle", alt: "Happy Owner with Frenchie" },
-  { src: "/fresh1.jpg", category: "Studs", alt: "Blue French Bulldog" },
-  { src: "/fresh2.jpg", category: "Puppies", alt: "Adorable Puppy Litter" },
-  { src: "/fresh3.jpg", category: "Lifestyle", alt: "Stylish Frenchie" },
-  { src: "/fresh4.jpg", category: "Events", alt: "Breeder Meetup" },
+  { src: "/fresh1.jpg", alt: "French Bulldog Stud" },
+  { src: "/fresh2.jpg", alt: "Playful Frenchie Puppy" },
+  { src: "/fresh3.jpg", alt: "Dog Show Event" },
+  { src: "/fresh4.jpg", alt: "Happy Owner with Frenchie" },
 ]
 
 export function GallerySection() {
-  const [activeCategory, setActiveCategory] = useState("All")
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
-
-  const filteredImages =
-    activeCategory === "All" ? galleryImages : galleryImages.filter((img) => img.category === activeCategory)
 
   return (
     <section id="gallery" className="py-16 md:py-24 bg-background scattered-background">
@@ -38,32 +27,13 @@ export function GallerySection() {
             Our Beautiful Bulldogs
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Browse through photos of our studs, puppies, events, and the Empire State Bulldogs lifestyle.
+            Browse through photos of our studs, puppies, and the Empire State Bulldogs lifestyle.
           </p>
-        </div>
-
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8 md:mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={activeCategory === category ? "default" : "outline"}
-              size="sm"
-              onClick={() => setActiveCategory(category)}
-              className={`text-base md:text-lg ${
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "border-border text-muted-foreground hover:text-foreground hover:border-primary"
-              }`}
-            >
-              {category}
-            </Button>
-          ))}
         </div>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
-          {filteredImages.map((image, index) => (
+          {galleryImages.map((image, index) => (
             <button
               key={index}
               className="relative aspect-square rounded-lg md:rounded-xl overflow-hidden group cursor-pointer"
@@ -75,9 +45,6 @@ export function GallerySection() {
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="text-foreground font-medium text-base md:text-lg">{image.category}</span>
-              </div>
             </button>
           ))}
         </div>

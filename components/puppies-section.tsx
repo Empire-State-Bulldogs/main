@@ -4,37 +4,17 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Heart, Check } from "lucide-react"
+import { Check } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 const puppies = [
   {
-    name: "Luna",
-    gender: "Female",
-    color: "Blue",
-    age: "10 weeks",
-    status: "Available",
-    description: "Playful and affectionate with beautiful markings.",
-    image: "/fresh1.jpg",
-  },
-  {
-    name: "Max",
-    gender: "Male",
-    color: "Fawn",
-    age: "9 weeks",
-    status: "Available",
-    description: "Calm temperament, perfect for families.",
-    image: "/fresh2.jpg",
-  },
-  {
-    name: "Bella",
-    gender: "Female",
-    color: "Brindle",
-    age: "11 weeks",
-    status: "Reserved",
-    description: "Stunning coat pattern, very social personality.",
-    image: "/fresh3.jpg",
+    name: "El Jefa",
+    title: "Featured Matriarch",
+    description:
+      "The powerhouse of excellence. El Jefa carries everything with grace and strength. Perfect in every way, she represents the foundation of our breeding program and the future of Empire State Bulldogs. Built to lead, built to inspire.",
+    image: "/El_Jefa.jpg",
+    highlight: true,
   },
 ]
 
@@ -85,70 +65,43 @@ export function PuppiesSection() {
         {/* Section Header */}
         <div className={`text-center mb-12 md:mb-16 ${isVisible ? "scroll-fade-up" : "opacity-0"}`}>
           <span className="text-primary text-sm md:text-base font-semibold uppercase tracking-wider">
-            Available Now
+            Our Foundation
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4 text-card-foreground">
-            Find Your Perfect Companion
+            Champion of Excellence
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Each of our puppies is raised with love, professional care, and early socialization to ensure they&apos;re
-            ready for their forever homes.
+            Meet the heart and soul of Empire State Bulldogs. El Jefa represents generations of careful breeding and
+            unwavering commitment to perfection.
           </p>
         </div>
 
-        {/* Puppies Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16">
-          {puppies.map((puppy, i) => (
+        {/* Featured Dog */}
+        <div className={`max-w-2xl mx-auto mb-16 ${isVisible ? "scroll-fade-up" : "opacity-0"}`}>
+          {puppies.map((dog) => (
             <Card
-              key={puppy.name}
-              className={`bg-secondary border-border overflow-hidden hover:border-primary/50 hover-lift transition-all duration-300 group ${
-                isVisible ? `scroll-fade-up delay-${i * 100}` : "opacity-0"
-              }`}
+              key={dog.name}
+              className="bg-secondary border-border overflow-hidden hover:border-primary/50 transition-all duration-300 group"
             >
               <div className="relative aspect-square bg-muted">
                 <Image
-                  src={puppy.image || "/placeholder.svg"}
-                  alt={puppy.name}
+                  src={dog.image || "/placeholder.svg"}
+                  alt={dog.name}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-contain p-2 md:p-4 group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-3 right-3 md:top-4 md:right-4">
-                  <Badge
-                    className={`text-xs md:text-sm ${
-                      puppy.status === "Available"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-accent text-accent-foreground"
-                    }`}
-                  >
-                    {puppy.status}
-                  </Badge>
-                </div>
-                <button
-                  className="absolute top-3 left-3 md:top-4 md:left-4 w-8 h-8 md:w-10 md:h-10 rounded-full bg-background/80 flex items-center justify-center hover:bg-background hover:scale-110 transition-all"
-                  aria-label={`Save ${puppy.name} to favorites`}
-                >
-                  <Heart className="w-4 h-4 md:w-5 md:h-5 text-accent" />
-                </button>
               </div>
-              <CardContent className="p-4 md:p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xl md:text-2xl font-bold text-card-foreground">{puppy.name}</h3>
-                  <span className="text-xs md:text-sm text-muted-foreground">{puppy.age}</span>
+              <CardContent className="p-6 md:p-8">
+                <div className="mb-4">
+                  <span className="text-primary text-sm font-semibold uppercase tracking-wider">{dog.title}</span>
+                  <h3 className="text-3xl md:text-4xl font-bold text-card-foreground mt-2">{dog.name}</h3>
                 </div>
-                <div className="flex items-center gap-2 md:gap-3 mb-3 flex-wrap">
-                  <Badge variant="outline" className="text-xs">
-                    {puppy.gender}
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    {puppy.color}
-                  </Badge>
-                </div>
-                <p className="text-sm md:text-base text-muted-foreground mb-4">{puppy.description}</p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6">{dog.description}</p>
                 <Button
                   asChild
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm md:text-base hover-lift"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-lg md:text-xl hover-lift"
                 >
-                  <Link href="#contact">Inquire About {puppy.name}</Link>
+                  <Link href="#contact">Learn More</Link>
                 </Button>
               </CardContent>
             </Card>
