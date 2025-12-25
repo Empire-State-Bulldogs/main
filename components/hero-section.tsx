@@ -1,11 +1,11 @@
 "use client"
-
-import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MapPin, Award, Heart, Facebook, Instagram, Twitter, Youtube } from "lucide-react"
+import { MapPin, Award, Heart, Facebook, Instagram, Youtube } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons"
 
 export function HeroSection() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.3 })
@@ -18,13 +18,13 @@ export function HeroSection() {
     },
     {
       icon: Instagram,
-      href: "https://www.instagram.com/EmpireStateBulldogs",
+      href: "https://www.instagram.com/Empire_State_Bulldogs",
       label: "Instagram",
     },
     {
-      icon: Twitter,
-      href: "https://x.com/Empire_State_Bulldogs",
-      label: "X (Twitter)",
+      isXTwitter: true,
+      href: "https://x.com/EmpireStateBD",
+      label: "X",
     },
     {
       icon: Youtube,
@@ -135,9 +135,11 @@ export function HeroSection() {
               className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/40 hover:scale-110 transition-all duration-300 hover-lift flex-shrink-0"
               aria-label={social.label}
             >
-              {React.createElement(social.icon, {
-                className: "w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary",
-              })}
+              {social.isXTwitter ? (
+                <FontAwesomeIcon icon={faXTwitter} className="text-primary text-lg sm:text-xl md:text-2xl" />
+              ) : (
+                <social.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-primary" />
+              )}
             </Link>
           ))}
         </div>

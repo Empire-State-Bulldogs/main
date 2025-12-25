@@ -2,8 +2,10 @@
 
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Facebook, Instagram, Twitter, Youtube, Play, Pause, SkipForward, SkipBack } from "lucide-react"
+import { Menu, XIcon, Facebook, Instagram, Youtube, Play, Pause, SkipForward, SkipBack } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons"
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -16,8 +18,8 @@ const navLinks = [
 
 const socialLinks = [
   { href: "https://www.facebook.com/EmpireStateBulldogs", icon: Facebook, label: "Facebook" },
-  { href: "https://www.instagram.com/EmpireStateBulldogs", icon: Instagram, label: "Instagram" },
-  { href: "https://x.com/Empire_State_Bulldogs", icon: Twitter, label: "X" },
+  { href: "https://www.instagram.com/Empire_State_Bulldogs", icon: Instagram, label: "Instagram" },
+  { href: "https://x.com/EmpireStateBD", isXTwitter: true, label: "X" },
   { href: "https://www.youtube.com/@EmpireStateBulldogs", icon: Youtube, label: "YouTube" },
 ]
 
@@ -206,7 +208,7 @@ export function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
+            {isMenuOpen ? <XIcon size={32} /> : <Menu size={32} />}
           </button>
         </div>
 
@@ -227,7 +229,6 @@ export function Header() {
 
               <div className="flex gap-6 justify-center pt-4 border-t border-border mt-4 w-full">
                 {socialLinks.map((social, index) => {
-                  const Icon = social.icon
                   return (
                     <Link
                       key={social.href}
@@ -238,7 +239,7 @@ export function Header() {
                       style={{ animationDelay: `${(navLinks.length + index) * 50}ms` }}
                       aria-label={social.label}
                     >
-                      <Icon size={28} />
+                      {social.isXTwitter ? <FontAwesomeIcon icon={faXTwitter} size="2x" /> : <social.icon size={28} />}
                     </Link>
                   )
                 })}
